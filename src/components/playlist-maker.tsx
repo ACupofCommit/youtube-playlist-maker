@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowDown, ArrowUp, Check, Copy, ExternalLink, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Check, Copy, ExternalLink, Sparkles, X } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,9 +13,14 @@ import { format, type Dictionary } from "@/lib/i18n";
 import { YOUTUBE_PLAYLIST_MAX, parseInput, thumbnailUrl, youtubePlaylistUrl } from "@/lib/youtube";
 
 const SAMPLE = [
-  "https://www.youtube.com/watch?v=jNQXAC9IVRw",
-  "https://youtu.be/9bZkp7q19f0",
+  "https://www.youtube.com/watch?v=gdZLi9oWNZg",
+  "https://youtu.be/JGwWNGJdvx8",
+  "https://www.youtube.com/watch?v=9bZkp7q19f0",
   "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+  // aespa: Supernova, Next Level, Whiplash
+  "https://www.youtube.com/watch?v=phuiiNCxRMg",
+  "https://youtu.be/4TWR90KJl84",
+  "https://www.youtube.com/watch?v=jWQx2f-CErU",
 ].join("\n");
 
 /** 목록에서 순서를 바꾸거나 뺄 때는 입력창을 정리된 링크로 다시 쓴다. */
@@ -35,6 +40,17 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
   const playlistUrl = videoIds.length > 0 ? youtubePlaylistUrl(videoIds, title) : null;
 
   const copied = playlistUrl !== null && copiedUrl === playlistUrl;
+
+  function fillSample() {
+    setText(SAMPLE);
+    setTitle(t.input.sampleTitle);
+  }
+
+  function clear() {
+    setText("");
+    // 예시로 넣은 이름은 같이 지운다. 직접 쓴 이름은 남긴다.
+    if (title === t.input.sampleTitle) setTitle("");
+  }
 
   function update(next: string[]) {
     setText(toText(next));
@@ -60,48 +76,64 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between gap-2">
-              <label htmlFor="links" className="text-sm font-medium">
-                {t.input.label}
-              </label>
-              {text ? (
-                <Button variant="ghost" size="xs" onClick={() => setText("")}>
-                  <X /> {t.input.clear}
-                </Button>
-              ) : (
-                <Button variant="ghost" size="xs" onClick={() => setText(SAMPLE)}>
-                  {t.input.sample}
-                </Button>
-              )}
+      {/* 처음 온 사람이 예시 넣기를 눌러 보도록 인물이 버튼을 가리킨다(손끝은 이미지 위에서 약 8%).
+          배너와 같이 lg 미만에서는 카드 오른쪽에 붙어 카드가 그만큼 줄고, lg 이상에서는 카드 바깥 여백에 둔다.
+          버튼 가운데는 카드 위에서 약 2.75rem(안내 문구 두 줄)·2.25rem(한 줄)이다. */}
+      <div className="flex items-start gap-1 lg:relative lg:block">
+        <Card className="min-w-0 flex-1">
+          <CardContent className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex min-w-0 flex-1 flex-col gap-1">
+                  <label htmlFor="links" className="text-sm font-medium">
+                    {t.input.label}
+                  </label>
+                  <p className="text-muted-foreground text-xs">{format(t.input.hint, { max: YOUTUBE_PLAYLIST_MAX })}</p>
+                </div>
+                {text ? (
+                  <Button variant="ghost" size="xs" className="shrink-0" onClick={clear}>
+                    <X /> {t.input.clear}
+                  </Button>
+                ) : (
+                  <Button variant="ghost" size="sm" className="sample-nudge shrink-0" onClick={fillSample}>
+                    <Sparkles /> {t.input.sample}
+                  </Button>
+                )}
+              </div>
+              <Textarea
+                id="links"
+                value={text}
+                onChange={(event) => setText(event.target.value)}
+                placeholder={t.input.placeholder}
+                spellCheck={false}
+                autoFocus
+                className="min-h-36 font-mono text-xs sm:text-sm"
+              />
             </div>
-            <Textarea
-              id="links"
-              value={text}
-              onChange={(event) => setText(event.target.value)}
-              placeholder={t.input.placeholder}
-              spellCheck={false}
-              autoFocus
-              className="min-h-36 font-mono text-xs sm:text-sm"
-            />
-            <p className="text-muted-foreground text-xs">{format(t.input.hint, { max: YOUTUBE_PLAYLIST_MAX })}</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="title" className="text-sm font-medium">
-              {t.input.titleLabel}
-            </label>
-            <Input
-              id="title"
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-              placeholder={t.input.titlePlaceholder}
-              maxLength={100}
-            />
-          </div>
-        </CardContent>
-      </Card>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="title" className="text-sm font-medium">
+                {t.input.titleLabel}
+              </label>
+              <Input
+                id="title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                placeholder={t.input.titlePlaceholder}
+                maxLength={100}
+              />
+            </div>
+          </CardContent>
+        </Card>
+        {!text && (
+          <Image
+            src="/banner/point-left.png"
+            alt=""
+            width={264}
+            height={480}
+            className="pointer-events-none mt-11 h-32 w-auto max-w-none shrink-0 -translate-y-[8%] select-none sm:mt-9 sm:h-44 lg:absolute lg:top-9 lg:left-full lg:mt-0 lg:ml-3 lg:h-60"
+          />
+        )}
+      </div>
 
       {playlistUrl && (
         <Card className="ring-primary/40 ring-2">

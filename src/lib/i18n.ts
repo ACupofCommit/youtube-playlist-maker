@@ -13,7 +13,7 @@ const ko = {
   },
   header: { theme: "화면 모드", light: "라이트", dark: "다크", system: "시스템", language: "언어" },
   hero: {
-    title: "YouTube 링크 여러 개를\n재생목록 하나로",
+    title: "YouTube 링크 여러 개를\n재생목록 링크 하나로",
     subtitle: "링크를 붙여 넣으면 로그인 없이 이어서 재생되는 재생목록 링크를 만들어 드려요.",
   },
   input: {
@@ -23,6 +23,7 @@ const ko = {
     hint: "한 줄에 하나씩, 또는 공백·쉼표로 나눠 붙여 넣으세요. 최대 {max}개까지 들어갑니다.",
     clear: "지우기",
     sample: "예시 넣기",
+    sampleTitle: "오늘 출근하면서 들을 노래",
     titleLabel: "재생목록 이름 (선택)",
     titlePlaceholder: "예: 주말에 볼 영상",
   },
@@ -64,7 +65,7 @@ const en: Dictionary = {
   },
   header: { theme: "Theme", light: "Light", dark: "Dark", system: "System", language: "Language" },
   hero: {
-    title: "Many YouTube links,\none playlist",
+    title: "Many YouTube links,\none playlist link",
     subtitle: "Paste your links and get a playlist link that plays them back to back. No sign-in needed.",
   },
   input: {
@@ -74,6 +75,7 @@ const en: Dictionary = {
     hint: "One per line, or separated by spaces or commas. Up to {max} videos.",
     clear: "Clear",
     sample: "Try a sample",
+    sampleTitle: "Songs for my commute today",
     titleLabel: "Playlist name (optional)",
     titlePlaceholder: "e.g. Weekend watch list",
   },

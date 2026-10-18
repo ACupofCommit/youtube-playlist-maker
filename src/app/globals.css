@@ -128,3 +128,36 @@
     @apply font-sans;
   }
 }
+/* 예시 넣기 버튼: 무지개 테두리가 돌며 눌러 보라고 알린다. */
+@property --nudge-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes nudge-spin {
+  to {
+    --nudge-angle: 360deg;
+  }
+}
+
+.sample-nudge {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    conic-gradient(from var(--nudge-angle), #ff0033, #ff8a00, #ffd400, #00c853, #2979ff, #d500f9, #ff0033) border-box;
+  box-shadow: 0 0 14px -2px color-mix(in oklch, #ff0033 45%, transparent);
+  animation: nudge-spin 2.5s linear infinite;
+}
+
+.sample-nudge:hover {
+  background:
+    linear-gradient(var(--muted), var(--muted)) padding-box,
+    conic-gradient(from var(--nudge-angle), #ff0033, #ff8a00, #ffd400, #00c853, #2979ff, #d500f9, #ff0033) border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sample-nudge {
+    animation: none;
+  }
+}
