@@ -20,7 +20,7 @@ const ko = {
     label: "YouTube 링크",
     placeholder:
       "https://www.youtube.com/watch?v=...\nhttps://youtu.be/...\nhttps://www.youtube.com/shorts/...",
-    hint: "한 줄에 하나씩, 또는 공백·쉼표로 나눠 붙여 넣으세요. 최대 {max}개까지 들어갑니다.",
+    hint: "한 줄에 하나씩, 또는 공백·쉼표로 나눠 붙여 넣으세요. (최대 {max}개)",
     clear: "지우기",
     samples: [
       { label: "예시 1", title: "하늘을 나는 테슬라 로드스터 쇼츠" },
@@ -74,7 +74,7 @@ const en: Dictionary = {
     label: "YouTube links",
     placeholder:
       "https://www.youtube.com/watch?v=...\nhttps://youtu.be/...\nhttps://www.youtube.com/shorts/...",
-    hint: "One per line, or separated by spaces or commas. Up to {max} videos.",
+    hint: "One per line, or separated by spaces or commas. (Up to {max})",
     clear: "Clear",
     samples: [
       { label: "Sample 1", title: "Flying Tesla Roadster shorts" },

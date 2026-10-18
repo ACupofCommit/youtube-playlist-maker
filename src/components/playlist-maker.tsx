@@ -47,7 +47,7 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
   const titles = useVideoTitles(text);
   const cardRef = useRef<HTMLDivElement>(null);
   const samplesRef = useRef<HTMLDivElement>(null);
-  const sampleCenter = useSampleCenter(cardRef, samplesRef, !text);
+  const sampleCenter = useSampleCenter(cardRef, samplesRef);
 
   const { videoIds, invalid } = useMemo(() => parseInput(text), [text]);
   const duplicateCount = videoIds.length - new Set(videoIds).size;
@@ -108,19 +108,21 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
                   </label>
                   <p className="text-muted-foreground text-xs">{format(t.input.hint, { max: YOUTUBE_PLAYLIST_MAX })}</p>
                 </div>
-                {text ? (
-                  <Button variant="ghost" size="xs" className="shrink-0" onClick={clear}>
-                    <X /> {t.input.clear}
-                  </Button>
-                ) : (
-                  <div ref={samplesRef} className="ml-auto flex shrink-0 gap-1.5">
+                {/* 예시 버튼은 늘 두고, 입력이 있으면 그 왼쪽에 지우기를 띄운다. */}
+                <div className="ml-auto flex shrink-0 items-center gap-1.5">
+                  {text && (
+                    <Button variant="ghost" size="sm" onClick={clear}>
+                      <X /> {t.input.clear}
+                    </Button>
+                  )}
+                  <div ref={samplesRef} className="flex gap-1.5">
                     {t.input.samples.map((sample, index) => (
                       <Button key={index} variant="ghost" size="sm" className="sample-nudge" title={sample.title} onClick={() => fillSample(index)}>
                         {sample.label}
                       </Button>
                     ))}
                   </div>
-                )}
+                </div>
               </div>
               <Textarea
                 id="links"
@@ -146,17 +148,15 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
             </div>
           </CardContent>
         </Card>
-        {!text && (
-          <Image
-            src="/banner/point-left.png"
-            alt=""
-            width={264}
-            height={480}
-            // lg 미만은 카드 옆(흐름 안)이라 margin-top, lg 이상은 카드 밖(absolute)이라 top 으로 버튼 가운데에 맞춘다.
-            style={{ "--sample-center": `${sampleCenter}px` } as React.CSSProperties}
-            className="pointer-events-none mt-(--sample-center) h-32 w-auto max-w-none shrink-0 -translate-y-[8%] select-none sm:h-44 lg:absolute lg:top-(--sample-center) lg:left-full lg:mt-0 lg:ml-3 lg:h-60"
-          />
-        )}
+        <Image
+          src="/banner/point-left.png"
+          alt=""
+          width={264}
+          height={480}
+          // lg 미만은 카드 옆(흐름 안)이라 margin-top, lg 이상은 카드 밖(absolute)이라 top 으로 버튼 가운데에 맞춘다.
+          style={{ "--sample-center": `${sampleCenter}px` } as React.CSSProperties}
+          className="pointer-events-none mt-(--sample-center) h-32 w-auto max-w-none shrink-0 -translate-y-[8%] select-none sm:h-44 lg:absolute lg:top-(--sample-center) lg:left-full lg:mt-0 lg:ml-3 lg:h-60"
+        />
       </div>
 
       {(videoIds.length > 0 || invalid.length > 0) && (
@@ -268,14 +268,13 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
 function useSampleCenter(
   cardRef: React.RefObject<HTMLDivElement | null>,
   samplesRef: React.RefObject<HTMLDivElement | null>,
-  enabled: boolean,
 ): number {
   const [center, setCenter] = useState(36);
 
   useEffect(() => {
     const card = cardRef.current;
     const samples = samplesRef.current;
-    if (!enabled || !card || !samples) return;
+    if (!card || !samples) return;
     const measure = () => {
       const cardTop = card.getBoundingClientRect().top;
       const box = samples.getBoundingClientRect();
@@ -284,7 +283,7 @@ function useSampleCenter(
     const observer = new ResizeObserver(measure);
     observer.observe(card);
     return () => observer.disconnect();
-  }, [cardRef, samplesRef, enabled]);
+  }, [cardRef, samplesRef]);
 
   return center;
 }
