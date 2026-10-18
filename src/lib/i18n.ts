@@ -61,7 +61,7 @@ const ko = {
     label: "특별한 광고",
     eyebrow: "1Bookmark",
     title: "유튜브 북마크를 여러 개 선택해서 바로 재생목록으로",
-    body: "유튜브를 보다 나중에 다시 볼 영상을 1Bookmark에 단축키 한 번으로 저장하고, “Play as Playlist” 기능으로 즐기세요.",
+    body: "유튜브를 보다 나중에 볼 영상을 1Bookmark에 단축키 한 번으로 저장하고, “Play as Playlist” 기능으로 즐기세요.",
     cta: "1Bookmark 알아보기",
   },
   footer: { brand: "커밋한잔", madeBy: "{brand}이 만들었어요" },
