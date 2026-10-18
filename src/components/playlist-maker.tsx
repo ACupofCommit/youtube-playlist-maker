@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { saveHistory } from "@/lib/history";
 import { format, type Dictionary } from "@/lib/i18n";
 import { YOUTUBE_PLAYLIST_MAX, parseInput, thumbnailUrl, youtubePlaylistUrl } from "@/lib/youtube";
 
@@ -68,6 +69,12 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
     if (t.input.samples.some((sample) => sample.title === title)) setTitle("");
   }
 
+  /** 복사하거나 연 재생목록을 최근 목록에 남긴다. */
+  function remember() {
+    if (!playlistUrl) return;
+    saveHistory({ url: playlistUrl, title: title.trim(), videoIds: videoIds.slice(0, YOUTUBE_PLAYLIST_MAX) });
+  }
+
   function update(next: string[]) {
     setText(toText(next));
   }
@@ -82,6 +89,7 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
   async function copy() {
     if (!playlistUrl) return;
     track("playlist_copy", { count: playlistCount });
+    remember();
     try {
       await navigator.clipboard.writeText(playlistUrl);
       setCopiedUrl(playlistUrl);
@@ -248,7 +256,10 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
                 size="lg"
                 className="sm:flex-1"
                 render={<a href={playlistUrl} target="_blank" rel="noopener noreferrer" />}
-                onClick={() => track("playlist_open", { count: playlistCount })}
+                onClick={() => {
+                  track("playlist_open", { count: playlistCount });
+                  remember();
+                }}
                 nativeButton={false}
               >
                 <ExternalLink /> {t.result.open}

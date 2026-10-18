@@ -47,6 +47,14 @@ const ko = {
     copyFailed: "복사하지 못했어요. 직접 선택해 복사해 주세요.",
     note: "YouTube가 만드는 임시 재생목록이에요. 열면 YouTube가 재생목록 주소를 새로 붙여 줍니다.",
   },
+  history: {
+    title: "최근 만든 재생목록",
+    note: "복사하거나 연 재생목록이 이 브라우저에만 저장돼요.",
+    untitled: "이름 없는 재생목록",
+    count: "영상 {count}개",
+    open: "YouTube에서 열기",
+    remove: "목록에서 삭제",
+  },
   banner: {
     label: "특별한 광고",
     eyebrow: "1Bookmark",
@@ -100,6 +108,14 @@ const en: Dictionary = {
     copied: "Link copied.",
     copyFailed: "Couldn't copy. Please select and copy it manually.",
     note: "This is a temporary playlist made by YouTube. Opening it gives you a fresh playlist URL.",
+  },
+  history: {
+    title: "Recent playlists",
+    note: "Playlists you copy or open are saved in this browser only.",
+    untitled: "Untitled playlist",
+    count: "{count} videos",
+    open: "Open in YouTube",
+    remove: "Remove from list",
   },
   banner: {
     label: "Special ad",

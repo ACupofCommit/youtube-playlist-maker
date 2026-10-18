@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/header";
+import { PlaylistHistory } from "@/components/playlist-history";
 import { PlaylistMaker } from "@/components/playlist-maker";
 import { PromoSection } from "@/components/promo-section";
 import { getDictionary, isLocale } from "@/lib/i18n";
@@ -19,6 +20,7 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
           <p className="text-muted-foreground mx-auto max-w-xl text-balance">{t.hero.subtitle}</p>
         </section>
         <PlaylistMaker t={t} />
+        <PlaylistHistory lang={lang} t={t} />
         <PromoSection lang={lang} t={t} />
       </main>
       <footer className="text-muted-foreground border-t py-6 text-center text-xs">
