@@ -122,7 +122,7 @@ export function PlaylistMaker({ lang, t }: { lang: Locale; t: Dictionary }) {
                   <label htmlFor="links" className="text-sm font-medium">
                     {t.input.label}
                   </label>
-                  <p className="text-muted-foreground text-xs">{format(t.input.hint, { max: YOUTUBE_PLAYLIST_MAX })}</p>
+                  <p className="text-muted-foreground text-xs sm:text-sm">{format(t.input.hint, { max: YOUTUBE_PLAYLIST_MAX })}</p>
                 </div>
                 {/* 예시 버튼은 늘 두고, 입력이 있으면 그 왼쪽에 지우기를 띄운다. */}
                 <div className="ml-auto flex shrink-0 items-center gap-1.5">
