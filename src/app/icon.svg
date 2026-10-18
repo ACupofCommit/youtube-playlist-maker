@@ -1,0 +1,6 @@
+<!-- 1Bookmark 마스터 로고. 색은 assets/brand/generate.mjs 가 BRAND 토큰을 치환해 렌더한다. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="85" fill="#00A63E"/>
+  <path fill="#FFFFFF" d="M125 64H387a40 40 0 0 1 40 40v344L256 320.5 85 448V104a40 40 0 0 1 40-40Z"/>
+  <path fill="#00A63E" d="M284 106.5 186 155.5V182h42v163h56Z"/>
+</svg>
