@@ -47,7 +47,7 @@ const ko = {
   banner: {
     label: "특별한 광고",
     eyebrow: "1Bookmark",
-    title: "북마크에서 바로 재생목록으로",
+    title: "유튜브 북마크를 여러 개 선택해서 바로 재생목록으로",
     body: "1Bookmark에 모아 둔 YouTube 북마크를 골라 재생을 누르면 이 재생목록이 바로 열려요. 팀·개인 북마크를 데스크톱·모바일·Raycast 어디서나 검색하세요.",
     cta: "1Bookmark 알아보기",
   },
@@ -98,7 +98,7 @@ const en: Dictionary = {
   banner: {
     label: "Special ad",
     eyebrow: "1Bookmark",
-    title: "From bookmarks straight to a playlist",
+    title: "Pick several YouTube bookmarks and play them as a playlist",
     body: "Select YouTube bookmarks in 1Bookmark and hit Play to open them as a playlist. Search team and personal bookmarks from desktop, mobile, and Raycast.",
     cta: "Discover 1Bookmark",
   },
