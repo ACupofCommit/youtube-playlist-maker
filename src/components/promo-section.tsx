@@ -8,8 +8,7 @@ import type { Dictionary, Locale } from "@/lib/i18n";
 // - lg 이상: 배너 바깥 여백에 둔다. 위를 배너 가운데에 맞춘 뒤 손끝만큼 올린다.
 export function PromoSection({ lang, t }: { lang: Locale; t: Dictionary }) {
   return (
-    <section className="flex flex-col gap-2 pb-12 lg:pb-36">
-      <span className="text-muted-foreground text-xs font-medium">{t.banner.label}</span>
+    <section className="pb-12 lg:pb-36">
       <div className="flex items-center gap-1 lg:relative lg:block">
         <Image
           src="/banner/point-right.png"
@@ -18,7 +17,9 @@ export function PromoSection({ lang, t }: { lang: Locale; t: Dictionary }) {
           height={480}
           className="pointer-events-none h-32 w-auto shrink-0 translate-y-[27%] select-none sm:h-44 lg:absolute lg:top-1/2 lg:right-full lg:mr-3 lg:h-60 lg:-translate-y-[23%]"
         />
-        <div className="min-w-0 flex-1">
+        {/* 좁은 화면에서는 양옆에 인물이 붙으므로 표시를 배너 열 안에 둬 배너 바로 위에 오게 한다. */}
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          <span className="text-muted-foreground text-xs font-medium">{t.banner.label}</span>
           <PromoBanner lang={lang} t={t} />
         </div>
         <Image
