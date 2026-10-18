@@ -23,7 +23,7 @@ const ko = {
     hint: "한 줄에 하나씩, 또는 공백·쉼표로 나눠 붙여 넣으세요. (최대 {max}개)",
     clear: "지우기",
     samples: [
-      { label: "예시 1", title: "하늘을 나는 테슬라 로드스터 쇼츠" },
+      { label: "예시 1", title: "Flying Tesla Roadster shorts" },
       { label: "예시 2", title: "오늘 출근하면서 들을 노래" },
     ],
     titleLabel: "재생목록 이름 (선택)",
