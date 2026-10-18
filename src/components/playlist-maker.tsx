@@ -16,9 +16,7 @@ import { YOUTUBE_PLAYLIST_MAX, parseInput, thumbnailUrl, youtubePlaylistUrl } fr
 // 예시 2: 출근길 노래 뮤직비디오.
 const SAMPLES = [
   [
-    "https://www.youtube.com/shorts/75QHJ2AyNlk",
     "https://www.youtube.com/shorts/wr_kIL-4BYQ",
-    "https://www.youtube.com/shorts/q3w7r-lzGqk",
     "https://www.youtube.com/shorts/fdm5URRPCAQ",
     "https://www.youtube.com/shorts/JtFG4DCkpWQ",
     "https://www.youtube.com/shorts/TG0EdQBe6YI",
