@@ -1,17 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, X } from "lucide-react";
+import { ArrowUpToLine, Copy, ExternalLink, X } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { removeHistory, useHistory } from "@/lib/history";
+import { removeHistory, useHistory, type HistoryEntry } from "@/lib/history";
 import { format, type Dictionary, type Locale } from "@/lib/i18n";
 import { thumbnailUrl } from "@/lib/youtube";
 
-/** 복사하거나 연 재생목록 목록. 이 브라우저에만 남는다. */
-export function PlaylistHistory({ lang, t }: { lang: Locale; t: Dictionary }) {
+/** 복사하거나 연 재생목록 목록. 이 브라우저에만 남는다. onLoad 는 항목을 위 입력 폼에 다시 채운다. */
+export function PlaylistHistory({
+  lang,
+  t,
+  onLoad,
+}: {
+  lang: Locale;
+  t: Dictionary;
+  onLoad: (entry: HistoryEntry) => void;
+}) {
   const history = useHistory();
   if (history.length === 0) return null;
+
+  async function copy(url: string) {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success(t.result.copied);
+    } catch {
+      toast.error(t.result.copyFailed);
+    }
+  }
 
   const date = new Intl.DateTimeFormat(lang, { dateStyle: "medium", timeStyle: "short" });
 
@@ -42,6 +60,12 @@ export function PlaylistHistory({ lang, t }: { lang: Locale; t: Dictionary }) {
                 </span>
               </div>
               <div className="flex shrink-0 items-center">
+                <Button variant="ghost" size="icon-xs" aria-label={t.history.load} title={t.history.load} onClick={() => onLoad(entry)}>
+                  <ArrowUpToLine />
+                </Button>
+                <Button variant="ghost" size="icon-xs" aria-label={t.history.copy} title={t.history.copy} onClick={() => copy(entry.url)}>
+                  <Copy />
+                </Button>
                 <Button
                   variant="ghost"
                   size="icon-xs"

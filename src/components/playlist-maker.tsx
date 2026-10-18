@@ -9,8 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { saveHistory } from "@/lib/history";
-import { format, type Dictionary } from "@/lib/i18n";
+import { PlaylistHistory } from "@/components/playlist-history";
+import { saveHistory, type HistoryEntry } from "@/lib/history";
+import { format, type Dictionary, type Locale } from "@/lib/i18n";
 import { YOUTUBE_PLAYLIST_MAX, parseInput, thumbnailUrl, youtubePlaylistUrl } from "@/lib/youtube";
 
 // 예시 1: 하늘을 나는 테슬라 로드스터 공개(2026-10) 관련 쇼츠. 공개 장면 → 원리 설명 → 밈 순서.
@@ -41,7 +42,7 @@ function toText(videoIds: string[]): string {
   return videoIds.map((id) => `https://www.youtube.com/watch?v=${id}`).join("\n");
 }
 
-export function PlaylistMaker({ t }: { t: Dictionary }) {
+export function PlaylistMaker({ lang, t }: { lang: Locale; t: Dictionary }) {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
@@ -73,6 +74,13 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
   function remember() {
     if (!playlistUrl) return;
     saveHistory({ url: playlistUrl, title: title.trim(), videoIds: videoIds.slice(0, YOUTUBE_PLAYLIST_MAX) });
+  }
+
+  /** 최근 목록의 항목을 입력 폼에 다시 채우고 폼이 보이게 맨 위로 올린다. */
+  function load(entry: HistoryEntry) {
+    setText(toText(entry.videoIds));
+    setTitle(entry.title);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function update(next: string[]) {
@@ -271,6 +279,8 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
           </CardContent>
         </Card>
       )}
+
+      <PlaylistHistory lang={lang} t={t} onLoad={load} />
     </div>
   );
 }
