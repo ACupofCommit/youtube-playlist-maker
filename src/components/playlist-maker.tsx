@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowDown, ArrowUp, Check, Copy, ExternalLink, X } from "lucide-react";
+import { track } from "@vercel/analytics";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
   const duplicateCount = videoIds.length - new Set(videoIds).size;
   const overflow = Math.max(0, videoIds.length - YOUTUBE_PLAYLIST_MAX);
   const playlistUrl = videoIds.length > 0 ? youtubePlaylistUrl(videoIds, title) : null;
+  const playlistCount = Math.min(videoIds.length, YOUTUBE_PLAYLIST_MAX);
 
   const copied = playlistUrl !== null && copiedUrl === playlistUrl;
 
@@ -49,6 +51,7 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
 
   async function copy() {
     if (!playlistUrl) return;
+    track("playlist_copy", { count: playlistCount });
     try {
       await navigator.clipboard.writeText(playlistUrl);
       setCopiedUrl(playlistUrl);
@@ -116,6 +119,7 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
                 size="lg"
                 className="sm:flex-1"
                 render={<a href={playlistUrl} target="_blank" rel="noopener noreferrer" />}
+                onClick={() => track("playlist_open", { count: playlistCount })}
                 nativeButton={false}
               >
                 <ExternalLink /> {t.result.open}
