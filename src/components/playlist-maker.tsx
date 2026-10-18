@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowDown, ArrowUp, Check, Copy, ExternalLink, Sparkles, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Check, Copy, ExternalLink, X } from "lucide-react";
 import { track } from "@vercel/analytics";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -118,7 +118,7 @@ export function PlaylistMaker({ t }: { t: Dictionary }) {
                   <div ref={samplesRef} className="ml-auto flex shrink-0 gap-1.5">
                     {t.input.samples.map((sample, index) => (
                       <Button key={index} variant="ghost" size="sm" className="sample-nudge" title={sample.title} onClick={() => fillSample(index)}>
-                        {index === 0 && <Sparkles />} {sample.label}
+                        {sample.label}
                       </Button>
                     ))}
                   </div>
