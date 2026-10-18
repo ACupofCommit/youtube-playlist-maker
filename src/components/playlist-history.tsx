@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpToLine, Copy, ExternalLink, X } from "lucide-react";
+import { Copy, ExternalLink, SquarePen, X } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -61,7 +61,7 @@ export function PlaylistHistory({
               </div>
               <div className="flex shrink-0 items-center">
                 <Button variant="ghost" size="icon-xs" aria-label={t.history.load} title={t.history.load} onClick={() => onLoad(entry)}>
-                  <ArrowUpToLine />
+                  <SquarePen />
                 </Button>
                 <Button variant="ghost" size="icon-xs" aria-label={t.history.copy} title={t.history.copy} onClick={() => copy(entry.url)}>
                   <Copy />
