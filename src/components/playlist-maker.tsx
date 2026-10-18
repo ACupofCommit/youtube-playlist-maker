@@ -18,10 +18,11 @@ const SAMPLE = [
   "https://youtu.be/JGwWNGJdvx8",
   "https://www.youtube.com/watch?v=9bZkp7q19f0",
   "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
-  // aespa: Supernova, Next Level, Whiplash
+  // aespa: Supernova, Whiplash
   "https://www.youtube.com/watch?v=phuiiNCxRMg",
-  "https://youtu.be/4TWR90KJl84",
-  "https://www.youtube.com/watch?v=jWQx2f-CErU",
+  "https://youtu.be/jWQx2f-CErU",
+  // NMIXX: DASH
+  "https://www.youtube.com/watch?v=7UecFm_bSTU",
 ].join("\n");
 
 /** 목록에서 순서를 바꾸거나 뺄 때는 입력창을 정리된 링크로 다시 쓴다. */
