@@ -54,7 +54,7 @@ const ko = {
     body: "1Bookmark에 모아 둔 YouTube 북마크를 골라 재생을 누르면 이 재생목록이 바로 열려요. 스페이스를 만들어 동료나 친구와 북마크를 함께 나눠 보세요.",
     cta: "1Bookmark 알아보기",
   },
-  footer: { madeBy: "커밋한잔이 만들었어요" },
+  footer: { brand: "커밋한잔", madeBy: "{brand}이 만들었어요" },
 };
 
 export type Dictionary = typeof ko;
@@ -108,7 +108,7 @@ const en: Dictionary = {
     body: "Select YouTube bookmarks in 1Bookmark and hit Play to open them as a playlist. Create a space to share bookmarks with teammates and friends.",
     cta: "Discover 1Bookmark",
   },
-  footer: { madeBy: "Made by A Cup of Commit" },
+  footer: { brand: "A Cup of Commit", madeBy: "Made by {brand}" },
 };
 
 const dictionaries: Record<Locale, Dictionary> = { ko, en };

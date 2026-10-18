@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/header";
 import { PlaylistMaker } from "@/components/playlist-maker";
@@ -20,7 +21,18 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
         <PlaylistMaker t={t} />
         <PromoSection lang={lang} t={t} />
       </main>
-      <footer className="text-muted-foreground border-t py-6 text-center text-xs">{t.footer.madeBy}</footer>
+      <footer className="text-muted-foreground border-t py-6 text-center text-xs">
+        {t.footer.madeBy.split("{brand}").map((part, index) => (
+          <Fragment key={index}>
+            {index > 0 && (
+              <a href="https://commit2.app/" target="_blank" rel="noopener" className="hover:text-foreground underline underline-offset-2">
+                {t.footer.brand}
+              </a>
+            )}
+            {part}
+          </Fragment>
+        ))}
+      </footer>
     </>
   );
 }
