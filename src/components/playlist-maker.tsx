@@ -37,14 +37,17 @@ const SAMPLES = [
   ],
 ].map((links) => links.join("\n"));
 
+const DEFAULT_SAMPLE = 1;
+
 /** 목록에서 순서를 바꾸거나 뺄 때는 입력창을 정리된 링크로 다시 쓴다. */
 function toText(videoIds: string[]): string {
   return videoIds.map((id) => `https://www.youtube.com/watch?v=${id}`).join("\n");
 }
 
 export function PlaylistMaker({ lang, t }: { lang: Locale; t: Dictionary }) {
-  const [text, setText] = useState("");
-  const [title, setTitle] = useState("");
+  // 처음 온 사람이 바로 결과를 보도록 예시 2(노래)를 채워 둔다.
+  const [text, setText] = useState(SAMPLES[DEFAULT_SAMPLE]);
+  const [title, setTitle] = useState(t.input.samples[DEFAULT_SAMPLE].title);
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
   const titles = useVideoTitles(text);
   const cardRef = useRef<HTMLDivElement>(null);
