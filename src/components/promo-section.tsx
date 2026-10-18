@@ -13,7 +13,7 @@ export function PromoSection({ lang, t }: { lang: Locale; t: Dictionary }) {
           alt=""
           width={197}
           height={480}
-          className="pointer-events-none absolute right-full bottom-0 mr-3 hidden h-44 w-auto select-none lg:block"
+          className="pointer-events-none absolute right-full bottom-0 mr-3 hidden h-60 w-auto select-none lg:block"
         />
         <PromoBanner lang={lang} t={t} />
         <Image
@@ -21,7 +21,7 @@ export function PromoSection({ lang, t }: { lang: Locale; t: Dictionary }) {
           alt=""
           width={264}
           height={480}
-          className="pointer-events-none absolute bottom-0 left-full ml-3 hidden h-44 w-auto select-none lg:block"
+          className="pointer-events-none absolute bottom-0 left-full ml-3 hidden h-60 w-auto select-none lg:block"
         />
       </div>
     </section>
