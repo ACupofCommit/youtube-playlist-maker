@@ -13,7 +13,7 @@ const ko = {
   },
   header: { theme: "화면 모드", light: "라이트", dark: "다크", system: "시스템", language: "언어" },
   hero: {
-    title: "YouTube 링크 여러 개를\n재생목록 하나로",
+    title: "YouTube 링크 여러 개를\n재생목록 링크 하나로",
     subtitle: "링크를 붙여 넣으면 로그인 없이 이어서 재생되는 재생목록 링크를 만들어 드려요.",
   },
   input: {
@@ -23,6 +23,7 @@ const ko = {
     hint: "한 줄에 하나씩, 또는 공백·쉼표로 나눠 붙여 넣으세요. 최대 {max}개까지 들어갑니다.",
     clear: "지우기",
     sample: "예시 넣기",
+    sampleTitle: "오늘 출근하면서 들을 노래",
     titleLabel: "재생목록 이름 (선택)",
     titlePlaceholder: "예: 주말에 볼 영상",
   },
@@ -45,9 +46,10 @@ const ko = {
     note: "YouTube가 만드는 임시 재생목록이에요. 열면 YouTube가 재생목록 주소를 새로 붙여 줍니다.",
   },
   banner: {
+    label: "특별한 광고",
     eyebrow: "1Bookmark",
-    title: "북마크에서 바로 재생목록으로",
-    body: "1Bookmark에 모아 둔 YouTube 북마크를 골라 재생을 누르면 이 재생목록이 바로 열려요. 팀·개인 북마크를 데스크톱·모바일·Raycast 어디서나 검색하세요.",
+    title: "유튜브 북마크를 여러 개 선택해서 바로 재생목록으로",
+    body: "1Bookmark에 모아 둔 YouTube 북마크를 골라 재생을 누르면 이 재생목록이 바로 열려요. 스페이스를 만들어 동료나 친구와 북마크를 함께 나눠 보세요.",
     cta: "1Bookmark 알아보기",
   },
   footer: { madeBy: "커밋한잔이 만들었어요" },
@@ -63,7 +65,7 @@ const en: Dictionary = {
   },
   header: { theme: "Theme", light: "Light", dark: "Dark", system: "System", language: "Language" },
   hero: {
-    title: "Many YouTube links,\none playlist",
+    title: "Many YouTube links,\none playlist link",
     subtitle: "Paste your links and get a playlist link that plays them back to back. No sign-in needed.",
   },
   input: {
@@ -73,6 +75,7 @@ const en: Dictionary = {
     hint: "One per line, or separated by spaces or commas. Up to {max} videos.",
     clear: "Clear",
     sample: "Try a sample",
+    sampleTitle: "Songs for my commute today",
     titleLabel: "Playlist name (optional)",
     titlePlaceholder: "e.g. Weekend watch list",
   },
@@ -95,9 +98,10 @@ const en: Dictionary = {
     note: "This is a temporary playlist made by YouTube. Opening it gives you a fresh playlist URL.",
   },
   banner: {
+    label: "Special ad",
     eyebrow: "1Bookmark",
-    title: "From bookmarks straight to a playlist",
-    body: "Select YouTube bookmarks in 1Bookmark and hit Play to open them as a playlist. Search team and personal bookmarks from desktop, mobile, and Raycast.",
+    title: "Pick several YouTube bookmarks and play them as a playlist",
+    body: "Select YouTube bookmarks in 1Bookmark and hit Play to open them as a playlist. Create a space to share bookmarks with teammates and friends.",
     cta: "Discover 1Bookmark",
   },
   footer: { madeBy: "Made by A Cup of Commit" },
